@@ -1,0 +1,65 @@
+<%- include("partials/header.ejs") %>
+
+  <div class="mainBox">
+    <div class="mainDate">
+      <% const currentDate = new Date(); %>
+      <% const dayOfWeek = currentDate.getDay(); %>
+      <% const dayOfMonth = currentDate.getDate(); %>
+      <% const month = currentDate.getMonth(); %>
+      
+      <% const daysOfWeek = [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+      ]; %>
+      
+      <% const monthsOfYear = [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December",
+      ]; %>
+      
+    <%  var suffix="th"; %>
+    <% if(dayOfMonth===1){ %>
+    <%    suffix="st"; %>
+    <% }else if(dayOfMonth===2){ %>
+    <%   suffix="nd"; %>
+    <% }else if(dayOfMonth===3){ %>
+    <%  suffix="rd"; %>
+    <% } %>
+
+    <p><%= daysOfWeek[dayOfWeek]%>,&nbsp;<%= monthsOfYear[month] %> &nbsp;<%= dayOfMonth %><%= suffix %></p>
+  </div>
+    <div class="mainform">
+    <form class="mf" method="post" value="Enter Your Task Here ." action="/submit">
+      <div><input type="text" id="name" name="name" placeholder="Enter Your Task" required></div>
+      <div><input type="submit" id="submit" class="s" value="+"></div>
+    </div>
+    </form>
+    <div class="item">
+      <% if(locals.array) {%>
+      <% array.forEach(function(item, index) { %>
+      <div class="dynamic-div">
+        <input type="checkbox" class="checkBox">
+        <p class="cp"> <%= item %></p>
+      </div>
+      <hr />
+      <% }); %>
+      <% } %>
+    </div>
+  </div>
+
+  <%- include("partials/footer.ejs") %>
